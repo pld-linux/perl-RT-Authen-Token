@@ -5,7 +5,6 @@
 %define		pdir	RT
 %define		pnam	Authen-Token
 Summary:	RT-Authen-Token - token-based authentication
-#Summary(pl.UTF-8):	
 Name:		perl-RT-Authen-Token
 Version:	0.04
 Release:	1
@@ -13,11 +12,11 @@ License:	GPL
 Group:		Development/Languages/Perl
 Source0:	http://www.cpan.org/modules/by-module/RT/%{pdir}-%{pnam}-%{version}.tar.gz
 # Source0-md5:	f48180cc663fcc8fc5eb7e72933ecc9e
-# generic URL, check or change before uncommenting
-#URL:		https://metacpan.org/release/RT-Authen-Token
+URL:		https://metacpan.org/release/RT-Authen-Token
 BuildRequires:	perl-devel >= 1:5.8.0
 BuildRequires:	rpm-perlprov >= 4.1-13
 BuildRequires:	rpmbuild(macros) >= 1.745
+BuildRequires:	rt < 5.0.0
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -45,11 +44,6 @@ Authentication tokens are stored securely (hashed and salted) in the
 database just like passwords, and so cannot be recovered after they are
 generated.
 
-
-
-# %description -l pl.UTF-8
-# TODO
-
 %prep
 %setup -q -n %{pdir}-%{pnam}-%{version}
 
@@ -64,6 +58,7 @@ generated.
 rm -rf $RPM_BUILD_ROOT
 
 %{__make} pure_install \
+	INSTALLVENDORLIB=%{perl_vendorlib} \
 	DESTDIR=$RPM_BUILD_ROOT
 
 %clean
@@ -72,6 +67,6 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc Changes README
-%{perl_vendorlib}/RT/Authen/*.pm
-%{perl_vendorlib}/RT/Authen/Token
-%{_mandir}/man3/*
+%{perl_vendorlib}/RT/Auth*.pm
+%{perl_vendorlib}/RT/Authen/Token.pm
+%{_mandir}/man3/RT::Auth*.3pm*

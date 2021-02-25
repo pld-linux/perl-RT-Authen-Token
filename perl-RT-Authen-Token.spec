@@ -62,7 +62,7 @@ install -d $RPM_BUILD_ROOT%{_datadir}/rt
 	INSTALLVENDORLIB=%{perl_vendorlib} \
 	DESTDIR=$RPM_BUILD_ROOT
 
-cp -a static $RPM_BUILD_ROOT%{_datadir}/rt
+cp -a html static $RPM_BUILD_ROOT%{_datadir}/rt
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -73,6 +73,11 @@ rm -rf $RPM_BUILD_ROOT
 %{perl_vendorlib}/RT/Auth*.pm
 %{perl_vendorlib}/RT/Authen/Token.pm
 %{_mandir}/man3/RT::Auth*.3pm*
+%{_datadir}/rt/html/*/*.html
+%{_datadir}/rt/html/*/*/*.html
+%{_datadir}/rt/html/Callbacks/RT-Authen-Token
+%{_datadir}/rt/html/Elements/AuthToken
+%{_datadir}/rt/html/Helpers/AuthToken
 %{_datadir}/rt/static/*/*.css
 %{_datadir}/rt/static/*/*.gif
 %{_datadir}/rt/static/*/*.js

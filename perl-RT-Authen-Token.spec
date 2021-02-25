@@ -69,7 +69,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc Changes README
+%doc Changes README etc
 %{perl_vendorlib}/RT/Auth*.pm
 %{perl_vendorlib}/RT/Authen/Token.pm
 %{_mandir}/man3/RT::Auth*.3pm*
